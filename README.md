@@ -1,6 +1,7 @@
-This repo contains following tasks.
+# Jenkins Github and Docker Containers Integration + Job chaining in Build Pipeline View of Jenkins.
+## This repo contains following tasks.
 
-1. Create container image that’s has Jenkins installed  using dockerfile 
+1. Create container image that’s has Jenkins installed  using Dockerfile 
 
 2. When we launch this image, it should automatically starts Jenkins service in the container.
 
@@ -16,5 +17,5 @@ This repo contains following tasks.
 
 7. Job4 : if app is not working , then send email to developer with error messages.
 
-8. Create One extra job job5 for monitor : If container where app is running. 
-	fails due to any reson then this job should automatically start the container again.
+8. Create One extra job Job5 for monitor : If container where app is running. 
+	fails due to any reason then this job should automatically start the container again.
