@@ -1,6 +1,12 @@
 # Jenkins Github and Docker Containers Integration + Job chaining in Build Pipeline View of Jenkins.
 ![Jobs](/images/view.jpg)
 
+For the required container images, pull them from https://hub.docker.com/
+
+#docker pull a4ankur/jenkins:latest
+
+And for the remaining images, you can simply pull official public images from https://hub.docker.com/
+
 ## This repo contains following tasks.
 1. Create container image that’s has Jenkins installed  using Dockerfile 
 
