@@ -26,7 +26,7 @@ And for the remaining images, you can simply pull official public images from ht
 
 8. Create One extra job Job5 for monitor : If container where app is running. 
 	fails due to any reason then this job should automatically start the container again.
-###### Solutions for above tasks:-
+## Solutions for above tasks:-
 Dockerfile to build the image.
 ![Dockerfile](/images/Dockerfile.png) 
 Python script for mailing.
