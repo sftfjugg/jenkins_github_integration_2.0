@@ -28,18 +28,60 @@ And for the remaining images, you can simply pull official public images from ht
 	fails due to any reason then this job should automatically start the container again.
 ## Solutions for above tasks:-
 Dockerfile to build the image.
-![Dockerfile](/images/Dockerfile.png) 
+```
+FROM centos:latest
+RUN  yum install java  -y --nogpgcheck
+RUN yum install wget -y --nogpgcheck
+RUN  wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+RUN rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+RUN yum install jenkins -y 
+RUN yum install sudo -y --nogpgcheck
+RUN echo "jenkins ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
+RUN yum install git -y
+RUN yum install python3 -y
+COPY send_mail.py /scripts/send_mail.py
+CMD  java -jar /usr/lib/jenkins/jenkins.war
+EXPOSE  8080
+```
 Python script for mailing.
-![send_mail.py](/images/script.png)
+```
+#!/usr/bin/python3
+
+import smtplib, ssl
+#import getpass  # to take secured stdin for password
+
+port = 587  # Port for starttls
+smtp_server = "smtp.gmail.com"
+sender_email = "my@gmail.com"
+receiver_email = "your@gmail.com"
+password = "Type your password and press enter"
+message = """
+Subject: Notice
+
+This message is sent from Python.
+"""
+try:
+    context = ssl.create_default_context()
+    with smtplib.SMTP(smtp_server, port) as server:
+        server.starttls(context=context)
+        server.login(sender_email, password)
+        server.sendmail(sender_email, receiver_email, message)
+   
+#except Exception as err:
+#   print('Error Occured : ', err)
+except:
+    print("Error occurred")
+else:
+    print("Mail has been sent successfully")
+```
 
 After creating above image using
-
-#docker build -t <tag-name> <path to Dockerfile>
-
-Run the below command to access docker commands installed on host VM from the guest Jenkins-container.
+```
+# docker build -t <tag-name> <path to Dockerfile>
+```
+Run the below command to run the container and access docker commands installed on host VM from the guest Jenkins-container.
 
 -p (option for Port Address Translation)
-
 -v (for mounting the volumes)
 ```
 # docker run -d -v /workspace_host/:/workspace_container/ -p 8081:8080 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker jenkins:latest
