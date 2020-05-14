@@ -2,9 +2,9 @@
 ![Jobs](/images/view.jpg)
 
 For the required container images, pull them from https://hub.docker.com/
-
-#docker pull a4ankur/jenkins:latest
-
+```
+# docker pull a4ankur/jenkins:latest
+```
 And for the remaining images, you can simply pull official public images from https://hub.docker.com/
 
 ## This repo contains following tasks.
@@ -41,17 +41,19 @@ Run the below command to access docker commands installed on host VM from the gu
 -p (option for Port Address Translation)
 
 -v (for mounting the volumes)
-
-#docker run -d -v /workspace_host/:/workspace_container/ -p 8081:8080 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker jenkins:latest
-
+```
+# docker run -d -v /workspace_host/:/workspace_container/ -p 8081:8080 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker jenkins:latest
+```
 After this, configure your jenkins using the dashboard url of jenkins. http://<hostVM-IP>:8081 This 8081 port is binded to the 8080 exposed port of the container. To get the admin password of the jenkins, run this command,
-
-#docker exec <container_ID> <path to the jenkins admin pass>
-
+```
+# docker exec <container_ID> <path to the jenkins admin pass>
+```
 ###### Now Create jobs for building job chaining.
 ## Job1
 For github-webhooks's payload url, use ngrok or any other tunneling to create a tunnel which gives you a random public url binded through a publicIP behind the scene.
+```
 #./ngrok http 8081
+```
 ![ngrok](/images/ngrok.jpg)
 
 Then go to your repo->settings->Webhooks.
@@ -72,8 +74,22 @@ Create a dtype_script.py  python script to know the file type in repo.
 ## Job5
 ![Job5](/images/job5.jpg)
 
-The hash in the token is generated using, #sha256 sum <any-thing>
-
+The hash in the token is generated using, 
+```
+# sha256 sum <write-any-thing>
+```
 ----------------------------------------------------------------------------------------------
 
 This repo also has some local hooks, e.g. post-commit, stored at .git/hooks/post-commit
+assuming a fast-forward merge.
+```
+# vi  .git/hooks/post-commit
+
+#!/bin/bash
+echo "post-commit tasks are started"
+git fetch
+git push
+echo "post commit tasks are done"
+
+# chmod +x .git/hooks/post-commit
+```
