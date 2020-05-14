@@ -103,8 +103,17 @@ Then go to your repo->settings->Webhooks.
 
 ## Job2
 Create a dtype_script.py  python script to know the file type in repo.
-![dtype_script.py](/images/dtype.png)
-
+```
+import os
+import subprocess as sp
+def f1(dir):
+    for File in os.listdir(dir):
+        if File.endswith(".php"):
+            return "php"
+        elif File.endswith(".py"):
+            return "python3"
+print(f1("/workspace_container/"))
+```
 ![Job2](/images/job2.jpg)
 
 ## Job3
