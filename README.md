@@ -1,3 +1,20 @@
+创建使用Dockerfile安装Python3和Keras或NumPy的容器映像
+
+当我们启动镜像时，它应该会自动开始在容器中训练模型。
+
+使用Jenkins中的build pipeline插件创建job1、job2、job3、job4和job5的作业链
+
+Job1：当一些开发人员将repo推送到Github时，自动拉Github repo。
+
+Job2：通过查看代码或程序文件，Jenkins应该自动启动安装了相应的机器学习工具或软件的映像容器，以部署代码并开始培训（例如，如果代码使用CNN，那么Jenkins应该启动已经安装了CNN处理所需的所有软件的容器）。
+
+Job3：训练你的模型和预测准确性或指标。
+
+Job4：如果度量精度低于95%，那么调整机器学习模型架构。
+
+Job5:重新训练模型或通知正在创建最佳模型
+
+为monitor创建一个额外的job6：如果应用程序正在运行的容器。由于任何原因失败，则此作业应自动重新启动容器，并且可以从上次训练的模型中断的位置开始。
 
 https://mp.weixin.qq.com/s/wVfLEv2YwLlRnNF9fPIYug
 
