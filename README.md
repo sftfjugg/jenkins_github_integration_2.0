@@ -1,3 +1,6 @@
+
+https://mp.weixin.qq.com/s/wVfLEv2YwLlRnNF9fPIYug
+
 # Jenkins Github and Docker Containers Integration + Job chaining in Build Pipeline View of Jenkins.
 ![Jobs](/images/view.jpg)
 
