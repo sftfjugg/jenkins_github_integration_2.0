@@ -16,6 +16,8 @@ Job5:重新训练模型或通知正在创建最佳模型
 
 为monitor创建一个额外的job6：如果应用程序正在运行的容器。由于任何原因失败，则此作业应自动重新启动容器，并且可以从上次训练的模型中断的位置开始。
 
+https://blog.csdn.net/deephub/article/details/106516922
+
 https://mp.weixin.qq.com/s/wVfLEv2YwLlRnNF9fPIYug
 
 # Jenkins Github and Docker Containers Integration + Job chaining in Build Pipeline View of Jenkins.
